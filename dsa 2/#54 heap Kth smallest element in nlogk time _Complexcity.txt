@@ -1,0 +1,28 @@
+// Kth smallest element in nlogk time _Complexcity
+#include <bits/stdc++.h>
+using namespace std;
+
+int KSmallest(int arr[] , int n , int key){
+    // making an max heap 
+    priority_queue <int> hMax;
+    
+    for (int i = 0 ; i < n ; i++){
+        // pushing element 
+        hMax.push(arr[i]);
+        if(hMax.size() > key){
+            hMax.pop();
+        }
+    }
+    return hMax.top();
+}
+
+int main(){
+    int arr[] = {2 , 6, 7, 1 , 5 , 9};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int key;
+    cin >> key;
+    
+    cout << "the Kth smallest element is : " << KSmallest( arr , n , key );
+    
+    return 0;
+}

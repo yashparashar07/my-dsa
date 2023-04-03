@@ -1,0 +1,47 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void addFrount(stack <int> &st ,int toAdd){
+    if (st.empty()){
+        st.push(toAdd);
+        return;
+    }
+    int n = st.top();
+    st.pop();
+    addFrount(st ,toAdd);
+    st.push(n);
+}
+
+void reverse(stack <int> &st ){
+    if (st.empty()){
+        return;
+    }
+    int n = st.top();
+    st.pop();
+    reverse(st);
+    addFrount(st ,n);
+}
+
+void print(stack <int> st){
+    while(!st.empty()){
+        cout << st.top() << " ";
+        st.pop();
+    }cout << endl;
+}
+
+int main(){
+    list <int> li = {2,3,4,5,6};
+    stack <int> st;
+    for (int x : li){
+        st.push(x);
+    }
+    cout << "before the use of function\n";
+    print(st);
+    cout << "after the use of function\n";
+    addFrount(st , 1);
+    print(st);
+    reverse(st);
+    cout << "after the use of function\n";
+    print(st);
+    return 0;
+}

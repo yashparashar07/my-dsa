@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+// area of triangle = 1/2 ( x3(y1-y2) + x1(y3 - y1) + x2(y3 - y1))
+
+int areaTriangle(int x1 , int y1 , int x2 , int y2 , int x3 , int y3){
+    int area = (1/2)*(x3*(y1-y2) + x1*(y3 - y1) + x2*(y3 - y1));
+    return area;
+}
+
+int main(){
+    // this is a program
+    int x ,y , x1, y1, x2, y2, x3 , y3;
+    cout << "let the triangle be ABC " << endl;
+    cout << "enter the point triangle (A): " << endl ;
+    cin >> x1 >> y1;
+    
+    cout << "enter the point triangle (B): " << endl ;
+    cin >> x2 >> y2;
+    
+    cout << "enter the point triangle (C): " << endl ;
+    cin >> x3 >> y3;
+    
+    cout << "enter the points to check : " << endl ;
+    cin >> x >> y;
+    
+    int area = areaTriangle(x1, y1, x2, y2, x3 , y3);
+    
+    int area1 = areaTriangle(x ,y, x2, y2, x3 , y3);
+    int area2 = areaTriangle(x1, y1, x, y, x3 , y3);
+    int area3 = areaTriangle(x1, y1, x2, y2, x ,y);
+    
+    if (area == (area1 + area2 + area3)){
+        cout << "present inside the triangle " << endl;
+    }
+    else if (area >= (area1 + area2 + area3)){
+        cout << "present outside the triangle " << endl;
+    }
+    else{
+        cout << "present on the side of triange";
+    }
+    
+    return 0;
+}
+

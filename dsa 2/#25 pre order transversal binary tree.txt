@@ -1,0 +1,52 @@
+// traversal in a binary tree
+/*
+1) pre order traversal
+       root -> left sub tree -> right sub tree
+
+2) post order traversal 
+       left sub tree -> right sub tree -> root 
+3) In order traversal 
+       left sub tree -> root -> right sub tree 
+        
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int data;
+    struct node *left;
+    struct node * right;
+}typedef node;
+
+struct node *createNode(int data){
+    struct node *n;     // creating a node pointer 
+    n = (struct node *)malloc(sizeof(struct node));        // allocating memory in the heap
+    n -> data = data;      // setting the data
+    n -> left = NULL;      // setting the left and right children to NULL 
+    n -> right = NULL;     // setting the left and right children to NULL 
+    return n;              // finaly returning the created node
+}
+
+void preOrder(node * root){
+    if(root!= NULL){
+        cout << root -> data << " ";
+        preOrder(root -> left);
+        preOrder(root -> right);
+    }
+}
+
+
+int main(){
+    // construction the root node - using functions (recomeded)
+    node *p = createNode(2);
+    node *p1 = createNode(1);
+    node *p2 = createNode(4);
+     
+    // linking the root node with left and right children
+    p -> left = p1;
+    p -> right = p2;
+    
+    preOrder(p);cout << endl;
+    return 0; 
+}

@@ -1,0 +1,56 @@
+// print first negative integer in a size of k (window size)
+/*
+firt step process first k size window
+second process remaining window
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector <long long int > printFirstNegativeIntger(long long int A[] , long long int N , long long int K){
+
+    deque < long long int > dq;
+    vector <long long> ans;
+
+    for(int i = 0 ; i< K ; i++){
+        if(A[i] < 0){
+            dq.push_back(i);
+        }
+    }
+
+    //  store answer of first k size window
+    if(dq.size() > 0){
+        ans.push_back(dq.front());
+    }
+    else{
+        ans.push_back(0);
+    }
+
+    //process for reaming window
+    for(int i = K ; i < N ; i++ ){
+        // removal
+        if(!dq.empty() && i - dq.front() >=  K){
+            dq.pop_front();
+        }
+        // addation
+        if(A[i] < 0){
+            dq.push_back(i);
+        }
+        // answer store
+        if(dq.size() > 0){
+        ans.push_back(dq.front());
+        }
+        else{
+            ans.push_back(0);
+        }
+    }
+    return ans;
+}
+
+int main(){
+
+
+    return 0;
+}
+
+

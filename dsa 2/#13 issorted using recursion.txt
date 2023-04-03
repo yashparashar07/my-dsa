@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+bool issorted(int * arr , int n){
+    if(n==1 || n == 0){
+        return true;
+    }
+    // if (arr [0] >= arr[1]){
+    //     return false;
+    // }
+    // else {
+    //     bool ans = issorted(arr+1 , n-1);
+    //     return ans ;
+    // }
+    if (arr [0] <= arr[1]){
+        // cout << arr [0] << "   "  << arr[1] <<endl ;
+        return issorted(arr+1 , n-1);
+    }
+    return false;
+}
+
+int main(){
+    int arr[] ={0,0,0,0};
+    int n = 4;
+    bool ans = issorted(arr , n);
+    if (ans) {
+  cout << " jg";
+} else {
+  cout << " nof jg";
+}
+    return 0;
+}

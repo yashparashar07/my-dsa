@@ -1,0 +1,19 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void print(stack <int> stack){
+    while (!stack.empty()){
+        cout << stack.top() << " ";
+        stack.pop();
+    }
+    cout << endl;
+}
+
+int main(){
+    vector <int> list = {1,2,3,4,5,6,7};
+    
+    stack <int> stack;
+    for (int i : list){
+        stack.push(i);
+    }
+    

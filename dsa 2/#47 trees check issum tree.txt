@@ -1,0 +1,70 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int data;
+    node * left;
+    node *right;
+}typedef node;
+
+struct node * createNode(int data){
+    struct node * n;
+    n = new node;
+    n -> data = data;
+    n -> left = NULL;
+    n -> right = NULL;
+    return n;
+}
+
+
+pair <int , int> isSumTreeFun(node * root){
+    if(root == NULL){
+        pair <bool , int> p = make_pair(true , 0);
+        return p;
+    }
+    if(root -> left == NULL && root -> right == NULL){
+        pair <bool , int> p = make_pair(true , root -> data);
+        return p;
+    }
+    pair <bool , int> leftAns = isSumTreeFun(root -> left);
+    pair <bool , int> rightAns = isSumTreeFun(root -> right);
+    
+    bool left = leftAns.first;
+    bool right = rightAns.first;
+    
+    bool c = root -> data == leftAns.second + rightAns.second;
+    
+    pair <bool , int> ans;
+    
+    if(left && right && c){
+        ans.first = true;
+        ans.second = 2*root -> data;
+    }
+    else{
+        ans.first = false;
+    }
+    return ans;
+}
+
+int main(){
+    
+    node * p1 = createNode(50); node * p6 = createNode(55); node * p5 = createNode(40);
+    node * p2 = createNode(30); node * p7 = createNode(70);
+    node * p3 = createNode(60); node * p8 = createNode(10);
+    node * p4 = createNode(20); node * p9 = createNode(25);
+    node * p10 = createNode(5);
+    node * p11 = createNode(1);
+    p1 -> left = p2;    p1 -> right = p3;
+    
+    p2 -> left = p4;    p3 -> left = p6; 
+    p2 -> right = p5;   p3 -> right = p7;
+    p4 -> left = p8;    p4 -> right = p9;
+    p8 -> left = p10;    p10 -> left = p11;
+    
+    pair <bool , int> p ;
+    p = isSumTreeFun(p1);
+    cout << p.first << " " << p.second;
+    return 0;
+}
+
+// contrubuted by Yash Parashar GoG

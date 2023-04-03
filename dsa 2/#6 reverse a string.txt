@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void
+reverse1 (string & s, int n)
+{
+  for (int i = 0; i <= n / 2; i++)
+    {
+      swap (s[i], s[n - 1]);
+      n--;
+    }
+}
+
+void
+reverse (string & s, int n, int i)
+{
+
+  if (i > n)
+    return;
+
+  swap (s[i], s[n]);
+  i++;
+  n--;
+  reverse (s, n, i);
+}
+
+bool
+palandrome (string s, int n, int i)
+{
+  if (i == n)
+    return 0;
+
+  if (s[i] != s[n])
+    {
+      return 1;
+    }
+  i++;
+  n--;
+  palandrome (s, n, i);
+  return 0;
+}
+
+
+int
+main ()
+{
+
+  string s = "abba";
+
+  int i = 0;
+  int n = s.length () - 1;
+  reverse (s, n, i);
+  cout << s << endl;
+  reverse1 (s, n + 1);
+  cout << s << endl;
+  palandrome (s, n, i) ? cout << " palandrome" : cout << "  not palandrome";
+  return 0;
+}

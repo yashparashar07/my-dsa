@@ -1,0 +1,50 @@
+// kth largest sum subarray
+/*
+-max of sum of kth largest no.
+
+---algo
+2 for loog as usual but i don't accepted
+then we are only optimizing the space using heap
+that solve
+
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// here arr is the array and k is the kth largest value sum 
+int getKthLargest(vector <int> &arr , int k){
+    // declaring the queue 
+    priority_queue<int , vector <int> , greater<int> > mini;
+    
+    // here n is the size of the array 
+    int n = arr.size();
+    //two for loop for traversing the all elements of the array
+    for(int i = 0 ; i < n ; i++){
+        int sum = 0 ;
+        for (int j = i ; j < n ; j++){
+            sum += arr[j];
+            
+            //using the concept of heap to minimise the space
+            if(mini.size() < k ){
+                    //if size is there then pushing the sum 
+                mini.push(sum);
+            }
+            else{
+                if(mini.top() < sum ){
+                    //if top is small then sum the we are pushing the value of sum in the heap 
+                    mini.pop();
+                    mini.push(sum);
+                }
+            }
+        }
+    }
+    
+    // returning the kth largest value of the sum 
+    return mini.top();
+}
+
+int main(){
+
+    return 0;
+}

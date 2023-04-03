@@ -1,0 +1,84 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int data;
+    node * left;
+    node *right;
+}typedef node;
+
+struct node * createNode(int data){
+    struct node * n;
+    n = new node;
+    n -> data = data;
+    n -> left = NULL;
+    n -> right = NULL;
+    return n;
+}
+
+int hight (node * root){
+    if(root == NULL){
+        return 0;
+    }
+    int left = hight (root -> left);
+    int right = hight (root -> right);
+    
+    int ans = max (left , right) + 1;
+    return ans;
+}
+
+int diameterOfTree(node * root ){
+    if (root == NULL){
+        return 0;
+    }
+    int left = diameterOfTree(root -> left);
+    int right = diameterOfTree(root -> right);
+    
+    int opt = hight(root -> left) + hight(root -> right) + 1;
+    int ans = max(opt , max(left , right));
+    return ans;
+}
+ 
+pair <int , int> diameterFast(node * root){
+    if (root == NULL){
+        pair <int , int > p = {0 , 0};
+        return p; 
+    }
+    
+    pair <int , int > left = diameterFast(root -> left);
+    pair <int , int > right = diameterFast (root -> right);
+    
+    int opt1 = left.first;
+    int opt2 = left.first;
+    int opt3 = left.second + right.second + 1 ;
+    
+    pair <int , int > ans;
+    ans.first = max(opt1 , max(opt2 , opt3));
+    ans.second = max (left.second , right.second)+1;
+    
+    return ans;
+} 
+
+int main(){
+    
+    node * p1 = createNode(50); node * p6 = createNode(55); node * p5 = createNode(40);
+    node * p2 = createNode(30); node * p7 = createNode(70);
+    node * p3 = createNode(60); node * p8 = createNode(10);
+    node * p4 = createNode(20); node * p9 = createNode(25);
+    
+    p1 -> left = p2;    p1 -> right = p3;
+    
+    p2 -> left = p4;    p3 -> left = p6; 
+    p2 -> right = p5;   p3 -> right = p7;
+    p4 -> left = p8;    p4 -> right = p9;
+    
+    // cout << hight(p1) << endl;
+    // cout << diameterOfTree(p1) << endl;
+    pair <int , int > p = diameterFast(p1);
+    cout << "the hight of tree is : " << p.first << endl;
+    cout << "the diameter of tree is : " << p.second << endl;
+    
+    return 0;
+}
+
+// contrubuted by Yash Parashar GoG

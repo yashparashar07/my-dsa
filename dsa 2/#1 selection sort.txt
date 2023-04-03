@@ -1,0 +1,43 @@
+// selection sort
+#include <iostream>
+using namespace std;
+
+void print_array(int arr[] , int n)
+{
+    for(int i = 0 ; i < n ; i++){
+        cout << arr[i] << " ";
+    }
+}
+ 
+void swap(int &a , int &b){
+    int temp = a;
+    a = b;
+    b = temp;
+}
+
+void sort(int arr[] , int n){
+
+    int i, j, min_idx;
+	
+	for (i = 0; i < n-1; i++)
+	{
+		min_idx = i;
+		for (j = i+1; j < n; j++)
+		if (arr[j] < arr[min_idx])
+			min_idx = j;
+	
+		swap(arr[min_idx], arr[i]);
+	}
+}
+int main(){
+  
+    int arr[] = { 4 , 5 , 3 };
+    int n;
+    n = sizeof(arr)/sizeof(int);
+    sort(arr , n);
+    cout << "the shorted array is : \n";
+
+    print_array(arr , n );
+    
+    return 0;
+}

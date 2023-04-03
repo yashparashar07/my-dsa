@@ -1,0 +1,55 @@
+// queue 
+/*
+types of queue 
+1 simple queue
+2 circular queue
+3 restricted queue 
+4 output restricted queue
+5 doubly ended queue 
+*/
+
+// stl of doubly ended queue
+
+// operations fush front , pop front , push back , pop back .
+
+#include <bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+    
+    deque <int> d;
+    
+    d.push_front(12);
+    d.push_back(14);
+    
+    cout << d.front() << endl ;
+    cout << d.back() << endl ;
+    
+    d.pop_front();
+    
+    cout << d.front() << endl ;
+    cout << d.back() << endl ; 
+    d.pop_back();
+    
+    if(d.empty()){
+        cout << "queue is empty" << endl;
+    }
+    else{
+        cout << "queue is not empty " << endl;
+    }
+        
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+

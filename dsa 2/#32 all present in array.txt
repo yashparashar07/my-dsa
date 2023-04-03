@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void search(int arr[] , int n , int key , vector<int> &vec , int index = 0){
+    if (n == 0)
+        return ;
+    if(arr[0] == key){
+        vec.push_back(index);
+    }
+    search(arr+1 , n-1 , key , vec , index+1);
+}
+
+int main(){
+    int arr[] = {1,2,6,6,7,6,4, 6};
+    int * ptr = &arr[0];
+    vector <int> vec;
+    int index;
+    search( ptr , 8 , 6 , vec );
+    cout << "present at \n";
+    for(int x : vec){
+        cout << x << " ";
+    }
+    cout << "\nindex / s";
+    return 0;
+}

@@ -1,0 +1,21 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void reverseStr(stack <char> st){
+    while(!st.empty()){
+        cout << st.top() << " ";
+        st.pop();
+    }
+}
+
+int main(){
+    string str = "yash parashar";
+    stack <char> st;
+    for (int i : str){
+        st.push(i);
+    }
+    
+    reverseStr(st);
+    return 0;
+}
+// output r a h s a r a p   h s a y 

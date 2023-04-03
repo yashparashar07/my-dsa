@@ -1,0 +1,31 @@
+// K closest number
+#include <bits/stdc++.h>
+using namespace std;
+
+void kClosest(int arr[] , int n , int key , int value){
+    priority_queue <pair<int , int>> p;
+    
+    for(int i = 0; i < n ; i++){
+        p.push({abs(arr[i] - value)  , arr[i]});
+        
+        if(p.size() > key){
+            p.pop();
+        }
+    }
+    while(p.size() > 0){
+        cout << p.top().second << " ";
+        p.pop();
+    }
+}
+
+int main(){
+    int arr[] = {2 , 6, 7, 1 , 5 , 9};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int key , value;
+    cout << "cout key and value (key is range )  , (value is the element of an array) : ";
+    cin >> key >> value;
+    
+    kClosest( arr , n , key , value);
+    
+    return 0;
+}

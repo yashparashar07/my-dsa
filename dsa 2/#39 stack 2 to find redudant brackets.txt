@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool check(string  str){
+    stack <int> st;
+    int i = 0;
+    while(i != str.length()){
+        if(str[i] == '('){
+            st.push(str[i]);
+        }
+        else if(str[i] == ')'){
+            if(st.empty()){
+                return false;
+            }
+            else if(st.top() == '('){
+                st.pop();
+            } 
+            else{
+                return false;
+            }
+        }
+        i++;
+    }
+    if(st.empty()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool find(string s){
+    stack <char> st;
+    
+    if(!check (s)){
+        return true;
+    }
+    
+    for (int i = 0; i < s.length() ; i++){
+        char ch = s[i];
+        if(ch == '(' || ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '%'){
+            st.push(ch);
+        }
+        else{
+            if(ch == ')'){
+                bool isR = true;
+                while(st.top() != '('){
+                    char top = st.top();
+                    if(top == '+' || top == '-' || top == '*' || top == '/' || top == '%'){
+                        isR = false;
+                    }
+                    st.pop();
+                }
+                if(isR){
+                    return true;
+                }
+                st.pop();
+            }
+        }
+    }
+    return false;
+}
+
+int main(){
+    string s;
+    cout << "type an Expression to check : \n";
+    cin >> s;
+    if(find(s)){
+        cout << "Your Expression is not CORRECT" << endl;
+    }
+    else{
+        cout << "continue you are going good" << endl;
+    }
+    return 0;
+}

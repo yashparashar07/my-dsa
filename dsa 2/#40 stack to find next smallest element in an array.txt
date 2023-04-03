@@ -1,0 +1,40 @@
+// book alocation problem
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> findS(int arr[] , int n ){
+    stack <int> s;
+    s.push(-1);
+    vector <int> ans(n);
+    
+    for (int i = n-1 ; i>=0 ; i--){
+        int curr = arr[i];
+        while(s.top() >= curr){
+            s.pop();
+        }
+        ans[i] = s.top();
+        s.push(curr);
+    }
+    return ans;
+}
+
+int main(){
+    int arr[] = {3, 2, 1 , 7, 5 };
+    int n , toFind = 6;
+    n = sizeof(arr)/sizeof(arr[0]);
+    
+    vector <int> vec(n);
+    vec = findS(arr , n);
+    cout << "next smaller element is :\n";
+    for(int i = 0 ; i < n ; i++){
+        cout << arr[i] << "  ";
+    }cout << endl;
+    for(int i = 0 ; i < n ; i++){
+        cout << " | ";
+    }cout << endl;
+    for (int x : vec){
+        cout << x << "  " ;
+    }cout << endl;
+    
+    return 0;
+}

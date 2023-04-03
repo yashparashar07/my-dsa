@@ -1,0 +1,38 @@
+// cpp program to find minimum number of element
+/*
+such that thir sum is greater.
+than sum of remaining elements of the array
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+//function to find elements needed
+int minElements(int arr[] , int n){
+    //calculating HALF of array sum
+    int halfSum = 0 ;
+    for (int i = 0 ; i < n ; i++)
+        halfSum += arr[i];
+    halfSum /= 2;
+
+    sort(arr , arr+n , greater<int>());
+
+    int res = 0 , currSum = 0;
+    for (int i = 0 ; i < n ; i++){
+        currSum += arr[i];
+        res++;
+        //current sum greater than sum
+        if(currSum > halfSum){
+            return res;
+        }
+    }
+    return res;
+}
+
+int main(){
+    int arr[] = { 2 ,1 ,2 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << minElements(arr, n) << endl;
+    return 0;
+}
+

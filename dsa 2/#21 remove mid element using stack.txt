@@ -1,0 +1,40 @@
+// pop middle element
+#include <bits/stdc++.h>
+using namespace std;
+
+void removeMid(stack <int> &st , int size , int count){
+    if(st.empty()){
+        return;
+    }
+    if(count == (size/2)){
+        st.pop();
+        return;
+    }
+    int n = st.top();
+    st.pop();
+    removeMid(st , size , count+1);
+    st.push(n);
+}
+
+void print(stack <int> st){
+    while(!st.empty()){
+        cout << st.top() << " ";
+        st.pop();
+    }cout << endl;
+}
+
+int main(){
+    vector <int> list = {1,2,3,4,5};
+    int n = 5;
+    int count = 0;
+    stack <int> st;
+    for (int i : list){
+        st.push(i);
+    }
+    cout << "stack before removing :\n";
+    print(st);
+    removeMid(st , n , count);
+    cout << "stack after removing :\n";
+    print(st);
+    return 0;
+}

@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void addSorted(stack <int> &st , int key){
+    if (st.empty()){
+        st.push(key);
+        return;
+    }
+    if (st.top() < key){
+        st.push(key);
+        return;
+    }
+    int n = st.top();
+    if(n > key){
+        st.pop();
+        addSorted(st , key);
+        st.push(n);
+    }
+}
+
+void print(stack <int> st){
+    while(!st.empty()){
+        cout << st.top() << " ";
+        st.pop();
+    }cout << endl;
+}
+
+int main(){
+    vector <int> list = {2,3,4,8};
+    stack <int> st;
+    for (int i : list){
+        st.push(i);
+    }
+    cout << "stack before adding :\n";
+    print(st);
+    addSorted(st , 5);
+    cout << "stack after adding :\n";
+    print(st);
+    return 0;
+}

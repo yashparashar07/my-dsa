@@ -1,0 +1,76 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct node{
+    int data;
+    node * left;
+    node *right;
+}typedef node;
+
+struct node * createNode(int data){
+    struct node * n;
+    n = new node;
+    n -> data = data;
+    n -> left = NULL;
+    n -> right = NULL;
+    return n;
+}
+
+vector <int> inOrder(node * root , vector <int>& ans){
+    
+    if(root!= NULL){
+        inOrder(root -> left , ans);
+        ans.push_back(root -> data) ; 
+        inOrder(root -> right , ans);  
+    }
+    return  ans;
+}
+
+bool checkSum(node * root , int key){
+    if(root == NULL){
+        return true;
+    }   
+    vector <int> ans;
+    ans = inOrder(root , ans);
+    int i = 0;
+    int j = ans.size() - 1;
+    
+    while(i<j){
+        if(ans[i] + ans[j] == key ){
+            return true;
+        }
+        if(ans[i] + ans[j] > key){
+            j--;
+        }
+        else{
+            i++;
+        }
+    }
+    return false;
+}
+
+int main(){
+    
+    node * p1 = createNode(50); node * p6 = createNode(55); node * p5 = createNode(40);
+    node * p2 = createNode(30); node * p7 = createNode(70);
+    node * p3 = createNode(60); node * p8 = createNode(10);
+    node * p4 = createNode(20); node * p9 = createNode(25);
+    
+    p1 -> left = p2;    p1 -> right = p3;
+    p2 -> left = p4;    p3 -> left = p6;
+    
+    p2 -> right = p5;   p3 -> right = p7;
+    p4 -> left = p8;    p4 -> right = p9;
+    
+    
+    if(checkSum(p1 , 85)){
+        cout << "true" << endl;
+    }
+    else{
+        cout << "false" << endl;
+    }
+    
+    return 0;
+}
+
+// contrubuted by Yash Parashar GoG

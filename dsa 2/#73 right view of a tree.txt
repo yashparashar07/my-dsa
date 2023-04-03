@@ -1,0 +1,33 @@
+// left view in a tree
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node {
+    int data;
+    Node * left = NULL;
+    Node * right = NULL;
+};
+
+void solve(Node * root , vector <int> ans , int lvl){
+    if(root == NULL)
+        return;
+
+    if( lvl == ans.size()){
+        ans.push_back(root -> data);
+    }
+
+    solve (root -> right , ans , lvl++);
+    solve (root -> left , ans , lvl++);
+
+}
+
+vector <int> leftView(Node  * root){
+vector <int> ans;
+solve(root , ans , 0);
+return ans;
+}
+
+int main(){
+
+return 0;
+}

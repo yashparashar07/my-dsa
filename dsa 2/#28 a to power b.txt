@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+// function of power
+int power(int n , int m){
+    if(m == 0){
+        return 1;
+    }
+    else{
+        // using recurtion 
+        return (n * power(n , m-1));
+    }
+}
+
+int main()
+{
+    int n , m;
+    cin >> n >> m;
+    // calling the function
+    int p = power(n,m);
+    cout << "the ans is : " << p;
+    return 0;
+}

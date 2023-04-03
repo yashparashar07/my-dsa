@@ -1,0 +1,41 @@
+// queue reversal
+/*
+algo 1
+queue se 1 by one element niklo
+our stack me dalo
+fir
+stack se element niklo aur
+queue me dalo
+
+algo 2
+recursion
+first ko side me rakdo
+recursion
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+queue<int> rev(queue<int> q){
+    // add code heare
+    stack<int> s;
+    while(!q.empty()){
+        int element = q.front();
+        q.pop();
+        s.push(element);
+    }
+    while(!s.empty()){
+        int element = s.top();
+        s.pop();
+        q.push(element);
+    }
+    return q;
+}
+
+int main(){
+
+
+    return 0;
+}
+
+
