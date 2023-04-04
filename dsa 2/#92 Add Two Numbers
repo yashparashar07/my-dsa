@@ -1,0 +1,103 @@
+// Add Two Numbers leetcode 2
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+public:
+
+    ListNode * reverse(ListNode * head){
+        ListNode  * curr = head;
+        ListNode * prev = NULL;
+        ListNode *  next = NULL;
+
+        while(curr != NULL){
+            next = curr -> next;
+            curr -> next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if(!l1) return l2;
+        if (!l2) return l1;
+        // l1 = reverse(l1);
+        // l2 = reverse(l2);
+        ListNode * ansStart = new ListNode(-1);
+        ListNode * ansTail = ansStart;
+
+        int carry = 0;
+
+        while(l1 != NULL && l2 != NULL){
+            int p1 = l1 -> val;
+            int p2 = l2 -> val;
+
+            int n = p1+p2+carry;
+
+            carry = n / 10;
+            n = n % 10;
+
+            ansTail -> next = new ListNode(n);
+            ansTail = ansTail -> next;     
+
+            l1 = l1 -> next;
+            l2 = l2 -> next;      
+
+        }
+        
+        while(l1 != NULL){
+            int p1 = l1 -> val;
+
+            int n = p1+carry;
+
+            carry = n / 10;
+            n = n % 10;
+
+            ansTail -> next = new ListNode(n);
+            ansTail = ansTail -> next;     
+
+            l1 = l1 -> next;     
+
+        }
+
+        while(l2 != NULL){
+            int p2 = l2 -> val;
+
+            int n = p2+carry;
+
+            carry = n / 10;
+            n = n % 10;
+
+            ansTail -> next = new ListNode(n);
+            ansTail = ansTail -> next;     
+
+            l2 = l2 -> next;      
+
+        }
+
+        if(carry != 0){
+            ansTail -> next = new ListNode(carry);
+            ansTail = ansTail -> next; 
+        }
+
+        return ansStart -> next;
+
+    }
+
+
+
+
+
+
+
+
+};
